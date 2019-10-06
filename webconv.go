@@ -73,8 +73,8 @@ func (c *Converter) xml2json() {
 	if err != nil {
 		log.Println(err)
 	}
-	var js []byte
-	js, err = json.Marshal(mv)
+
+	js, err := json.Marshal(mv)
 	if err != nil {
 		log.Println(err)
 	}
