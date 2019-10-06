@@ -7,7 +7,6 @@ import (
 	"io"
 	"log"
 	"net/http"
-	//"net/http/httptest"
 )
 
 type Converter struct {
@@ -21,7 +20,7 @@ func NewConv() *Converter {
 	return &Converter{}
 }
 
-// CopyInput
+// CopyInput creates copy of received data and sets content-type
 func (c *Converter) CopyInput(r *http.Request) {
 
 	//this is not necessary, but its better keep payload
@@ -46,7 +45,7 @@ func (c *Converter) MakeReply(w http.ResponseWriter) {
 	}
 }
 
-// SwapFormat check mime type and fill Input.Result
+// SwapFormat fill Input.Result
 // if input data is Unsupported they return raw data back
 // (TODO: maybe is better to return 415 Unsupported Media Type?)
 func (c *Converter) SwapFormat() {
@@ -65,6 +64,7 @@ func (c *Converter) SwapFormat() {
 
 }
 
+// xml2json converts XML in Payload and saves JSON to Result
 func (c *Converter) xml2json() {
 
 	c.ResultContentType = JSON
@@ -83,6 +83,7 @@ func (c *Converter) xml2json() {
 
 }
 
+// json2xml converts JSON in Payload and saves XML to Result
 func (c *Converter) json2xml() {
 
 	c.ResultContentType = XML
