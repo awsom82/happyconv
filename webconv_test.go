@@ -144,19 +144,29 @@ func TestJson2Xml(t *testing.T) {
 }
 
 func BenchmarkJson2Xml(b *testing.B) {
+
+	conv := NewConv()
+	conv.Payload.WriteString(TEST_JSON)
+	conv.ContentType = JSON
+
+	b.ResetTimer()
+
 	for i := 0; i < b.N; i++ {
-		conv := NewConv()
-		conv.Payload.WriteString(TEST_JSON)
-		conv.ContentType = JSON
 		conv.json2xml()
+		conv.Result.Reset()
 	}
 }
 
 func BenchmarkXml2Json(b *testing.B) {
+
+	conv := NewConv()
+	conv.Payload.WriteString(TEST_XML)
+	conv.ContentType = XML
+
+	b.ResetTimer()
+
 	for i := 0; i < b.N; i++ {
-		conv := NewConv()
-		conv.Payload.WriteString(TEST_XML)
-		conv.ContentType = XML
 		conv.xml2json()
+		conv.Result.Reset()
 	}
 }
