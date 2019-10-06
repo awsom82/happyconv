@@ -44,13 +44,10 @@ func (m *MimeType) FromString(ct string) {
 // DetectContentType detects MIME-Type by reading it from header, if this sections is missing.
 // Then we try to detect it by MIME Sniff algoritm (https://mimesniff.spec.whatwg.org/)
 // this is embedded algoritm in net/http std package
-func (m *MimeType) DetectContentType(header string, body []byte) {
-
-	var ct string
-	ct = header
+func (m *MimeType) DetectContentType(ct string, body []byte) {
 
 	if ct == "" || ct == "application/octet-stream" {
-		ct = http.DetectContentType(body) // [:512]r.Body.Bytes()
+		ct = http.DetectContentType(body)
 	}
 
 	m.FromString(ct)
