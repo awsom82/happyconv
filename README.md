@@ -3,11 +3,8 @@ This work done just in test case
 
 ## Installing
 
-Just run `git clone github.com/awsom82/happyconv && cd json2xmlconv` and run by `go run *.go`.
-This will run conversion http service at port 8080. 
-
-If you want change port you can do it by set env. variable `JSON2XMLCONV_PORT=[YOU PORT HERE] go run *.go`. 
-
+Just run `git clone github.com/awsom82/happyconv && cd happyconv` and run by `go build && ./happyconv`.
+This will run conversion http service at port 8080.
 
 ## Using
 After you run app, you shoud able send any JSON or XML file to `http://localhost:8080/`.
