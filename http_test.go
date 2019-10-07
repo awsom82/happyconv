@@ -53,3 +53,25 @@ func TestServeHTTP(t *testing.T) {
 	}
 
 }
+
+func BenchmarkParallelTestServeHTTP(b *testing.B) {
+
+	serv := NewServer()
+	ts := httptest.NewServer(serv)
+	defer ts.Close()
+
+	b.RunParallel(func(pb *testing.PB) {
+
+		for pb.Next() {
+			ct := "application/json"
+			payload := bytes.NewReader([]byte(`{"books": "Hello, i'am a test string"}`))
+
+			res, err := http.Post(ts.URL, ct, payload)
+			if err != nil {
+				b.Fatal(err)
+			}
+			res.Body.Close()
+		}
+	})
+
+}
