@@ -39,9 +39,11 @@ func TestServeHTTP(t *testing.T) {
 
 	contenttype := res.Header.Get("Content-type")
 	result, err := ioutil.ReadAll(res.Body)
-	res.Body.Close()
+
 	if err != nil {
 		t.Fatal(err)
+	} else {
+		defer res.Body.Close()
 	}
 
 	if contenttype != "application/xml" {
@@ -69,8 +71,10 @@ func BenchmarkParallelTestServeHTTP(b *testing.B) {
 			res, err := http.Post(ts.URL, ct, payload)
 			if err != nil {
 				b.Fatal(err)
+			} else {
+				defer res.Body.Close()
 			}
-			res.Body.Close()
+
 		}
 	})
 
