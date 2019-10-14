@@ -88,7 +88,7 @@ func TestMakeReply(t *testing.T) {
 	conv.ResultContentType = JSON
 
 	w := httptest.NewRecorder()
-	conv.MakeReply(w)
+	conv.MakeReply(w, nil)
 
 	resp := w.Result()
 	body, _ := ioutil.ReadAll(resp.Body)
