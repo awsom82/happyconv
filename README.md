@@ -11,10 +11,11 @@ After you run app, you shoud able send any JSON or XML file to `http://localhost
 
 Notice, there no specifict path for JSON or XML. The application will detect input type of file by mime-type header, ot, if it lack that info. it will try to detect that by file signature [MIME Sniffing](https://mimesniff.spec.whatwg.org)
 
-Examples
-`http :8080 Content-type:application/xml < example.xml`
-
-`http :8080 Content-type:application/json < example.json`
+### Examples
+```
+$ http :8080 Content-type:application/xml < example.xml
+$ http :8080 Content-type:application/json < example.json
+```
 
 
 ## Testing & Benchmarking
