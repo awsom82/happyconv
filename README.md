@@ -23,13 +23,12 @@ $ http :8080 Content-type:application/json < example.json
 Test with `go test -v .`
 
 and run benchmarks 
-`go test -bench . -benchmem`
+`go test -bench . -benchmem -parallel 24 -cpu 4`
 
 ```
-goos: darwin
-goarch: amd64
-BenchmarkJson2Xml-4   	   42492	     26760 ns/op	   43400 B/op	     214 allocs/op
-BenchmarkXml2Json-4   	   23481	     50462 ns/op	   21045 B/op	     408 allocs/op
+BenchmarkParallelTestServeHTTP-4   	    7641	    339199 ns/op	   19842 B/op	     154 allocs/op
+BenchmarkJson2Xml-4                	   43954	     26005 ns/op	   41864 B/op	     211 allocs/op
+BenchmarkXml2Json-4                	   25051	     47962 ns/op	   19701 B/op	     406 allocs/op
 PASS
-ok  	_/Users/awsom82/Sources/happyconv	3.151s
+ok  	github.com/awsom82/happyconv	6.689s
 ```
