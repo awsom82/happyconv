@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-// Creates new server
+// NewServer creates new server
 func NewServer() *http.Server {
 	srv := http.Server{
 		Addr:         ":8080",
@@ -19,7 +19,7 @@ func NewServer() *http.Server {
 	return &srv
 }
 
-// http.handler
+// WebconvHadler a http.handler function
 func WebconvHadler(w http.ResponseWriter, r *http.Request) {
 
 	conv := NewConv()

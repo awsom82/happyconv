@@ -5,11 +5,15 @@ import (
 	"strings"
 )
 
+// MimeType represents Content-Type
 type MimeType uint8
 
 const (
+	// Unsupported used for unsupported content-types
 	Unsupported MimeType = iota
+	// JSON represents Content-Type: application/json
 	JSON
+	// XML represents Content-Type: application/xml and it's variations
 	XML
 )
 
@@ -42,8 +46,8 @@ func (m *MimeType) FromString(ct string) {
 }
 
 // DetectContentType detects MIME-Type by reading it from header, if this sections is missing.
-// Then we try to detect it by MIME Sniff algoritm (https://mimesniff.spec.whatwg.org/)
-// this is embedded algoritm in net/http std package
+// Then we try to detect it by MIME Sniff algorithm (https://mimesniff.spec.whatwg.org/)
+// this is embedded algorithm in net/http std package
 func (m *MimeType) DetectContentType(ct string, body []byte) {
 
 	if ct == "" || ct == "application/octet-stream" {

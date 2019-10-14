@@ -12,14 +12,14 @@ import (
 func TestNewServer(t *testing.T) {
 
 	srv := NewServer()
-	srv_dummy := &http.Server{}
+	srvDummy := &http.Server{}
 	//
 	// if !reflect.DeepEqual(srv, srv_dummy) {
 	//   t.Errorf("Webconv() wrong return %d != %d", srv, srv_dummy)
 	// }
 
-	if reflect.TypeOf(srv).String() != reflect.TypeOf(srv_dummy).String() {
-		t.Errorf("TestNewServer() wrong return %s must be %s type", reflect.TypeOf(srv).String(), reflect.TypeOf(srv_dummy).String())
+	if reflect.TypeOf(srv).String() != reflect.TypeOf(srvDummy).String() {
+		t.Errorf("TestNewServer() wrong return %s must be %s type", reflect.TypeOf(srv).String(), reflect.TypeOf(srvDummy).String())
 	}
 }
 
@@ -30,7 +30,7 @@ func TestServeHTTP(t *testing.T) {
 	ct := "application/json"
 
 	payload.WriteString(`{"books": "Hello, i'am a test string"}`)
-	check_xml := []byte(`<?xml version="1.0" encoding="UTF-8"?>` + "\n" + `<books>Hello, i'am a test string</books>`)
+	checkXML := []byte(`<?xml version="1.0" encoding="UTF-8"?>` + "\n" + `<books>Hello, i'am a test string</books>`)
 
 	ts := httptest.NewServer(http.HandlerFunc(WebconvHadler))
 	defer ts.Close()
@@ -53,8 +53,8 @@ func TestServeHTTP(t *testing.T) {
 		t.Error("Content-type key incorrect")
 	}
 
-	if string(result) != string(check_xml) {
-		t.Error("Recieved payload data wrong")
+	if string(result) != string(checkXML) {
+		t.Error("Received payload data wrong")
 	}
 
 }

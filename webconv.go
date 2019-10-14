@@ -11,10 +11,13 @@ import (
 )
 
 var (
-	ErrConversion  = errors.New("webconv: conversion error, possible mailformed payload check logs")
+	// ErrConversion is a converter error
+	ErrConversion = errors.New("webconv: conversion error, possible mailformed payload; check logs")
+	// ErrUnsupported is error type to flag unsupported formats
 	ErrUnsupported = errors.New("webconv: unsupported format")
 )
 
+// Converter holds payload and conversion results
 type Converter struct {
 	Payload           bytes.Buffer
 	ContentType       MimeType
@@ -22,6 +25,7 @@ type Converter struct {
 	ResultContentType MimeType
 }
 
+// NewConv returns new Converter struct
 func NewConv() *Converter {
 	return &Converter{}
 }

@@ -37,27 +37,27 @@ const TEST_JSON string = `{"books":{"book":[{"-seq":"1","author":"William H. Gad
 func TestNewConv(t *testing.T) {
 
 	conv := NewConv()
-	conv_dummy := &Converter{}
+	convDummy := &Converter{}
 
-	if !reflect.DeepEqual(conv, conv_dummy) {
-		t.Errorf("NewConv() wrong return %d != %d", conv, conv_dummy)
+	if !reflect.DeepEqual(conv, convDummy) {
+		t.Errorf("NewConv() wrong return %d != %d", conv, convDummy)
 	}
 }
 
 func TestCopyInput(t *testing.T) {
 
-	var check_xml bytes.Buffer
+	var checkXML bytes.Buffer
 	var dummy bytes.Buffer
-	check_xml.WriteString(TEST_XML)
-	conv_dummy := &Converter{check_xml, XML, dummy, Unsupported}
+	checkXML.WriteString(TEST_XML)
+	convDummy := &Converter{checkXML, XML, dummy, Unsupported}
 
-	req := httptest.NewRequest("POST", "/", &check_xml)
+	req := httptest.NewRequest("POST", "/", &checkXML)
 
 	conv := NewConv()
 	conv.CopyInput(req)
 
-	if !reflect.DeepEqual(conv, conv_dummy) {
-		t.Errorf("SwapFormat() bad state %d != %d", conv, conv_dummy)
+	if !reflect.DeepEqual(conv, convDummy) {
+		t.Errorf("SwapFormat() bad state %d != %d", conv, convDummy)
 	}
 }
 
@@ -74,7 +74,7 @@ func TestSwapFormat(t *testing.T) {
 	}
 
 	if conv.Result.String() != TEST_JSON {
-		t.Error("Recieved payload data wrong")
+		t.Error("Received payload data wrong")
 	}
 
 }
@@ -120,7 +120,7 @@ func TestXml2Json(t *testing.T) {
 	}
 
 	if conv.Result.String() != TEST_JSON {
-		t.Error("Recieved payload data wrong")
+		t.Error("Received payload data wrong")
 	}
 
 }
@@ -138,7 +138,7 @@ func TestJson2Xml(t *testing.T) {
 	}
 
 	if conv.Result.String() != TEST_XML {
-		t.Error("Recieved payload data wrong")
+		t.Error("Received payload data wrong")
 	}
 
 }
