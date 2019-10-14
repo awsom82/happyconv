@@ -1,4 +1,4 @@
-# XML & JSON 2-Way Converter
+# XML & JSON 2-Way Converter [![Go Report Card](https://goreportcard.com/badge/github.com/awsom82/happyconv)](https://goreportcard.com/report/github.com/awsom82/happyconv)
 This work done just in test case
 
 ## Installing
