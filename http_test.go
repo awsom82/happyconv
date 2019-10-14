@@ -75,7 +75,7 @@ func BenchmarkParallelTestServeHTTP(b *testing.B) {
 			if err != nil {
 				b.Fatal(err)
 			} else {
-				defer res.Body.Close()
+				res.Body.Close()
 			}
 
 		}
