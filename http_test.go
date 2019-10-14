@@ -12,10 +12,14 @@ import (
 func TestNewServer(t *testing.T) {
 
 	srv := NewServer()
-	srv_dummy := &Server{}
+	srv_dummy := &http.Server{}
+	//
+	// if !reflect.DeepEqual(srv, srv_dummy) {
+	//   t.Errorf("Webconv() wrong return %d != %d", srv, srv_dummy)
+	// }
 
-	if !reflect.DeepEqual(srv, srv_dummy) {
-		t.Errorf("Webconv() wrong return %d != %d", srv, srv_dummy)
+	if reflect.TypeOf(srv).String() != reflect.TypeOf(srv_dummy).String() {
+		t.Errorf("TestNewServer() wrong return %s must be %s type", reflect.TypeOf(srv).String(), reflect.TypeOf(srv_dummy).String())
 	}
 }
 
@@ -28,8 +32,7 @@ func TestServeHTTP(t *testing.T) {
 	payload.WriteString(`{"books": "Hello, i'am a test string"}`)
 	check_xml := []byte(`<?xml version="1.0" encoding="UTF-8"?>` + "\n" + `<books>Hello, i'am a test string</books>`)
 
-	serv := NewServer()
-	ts := httptest.NewServer(serv)
+	ts := httptest.NewServer(http.HandlerFunc(WebconvHadler))
 	defer ts.Close()
 
 	res, err := http.Post(ts.URL, ct, &payload)
@@ -58,8 +61,8 @@ func TestServeHTTP(t *testing.T) {
 
 func BenchmarkParallelTestServeHTTP(b *testing.B) {
 
-	serv := NewServer()
-	ts := httptest.NewServer(serv)
+	h := http.HandlerFunc(WebconvHadler)
+	ts := httptest.NewServer(h)
 	defer ts.Close()
 
 	b.RunParallel(func(pb *testing.PB) {
