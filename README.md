@@ -1,15 +1,14 @@
-# XML & JSON 2-Way Converter [![Go Report Card](https://goreportcard.com/badge/github.com/awsom82/happyconv)](https://goreportcard.com/report/github.com/awsom82/happyconv)
-This work done just in test case
+# XML & JSON 2-Way Converter [![GitHub Actions](https://github.com/awsom82/happyconv/workflows/Go/badge.svg)](https://github.com/awsom82/happyconv) [![Go Report Card](https://goreportcard.com/badge/github.com/awsom82/happyconv)](https://goreportcard.com/report/github.com/awsom82/happyconv) [![Coverage](http://gocover.io/_badge/github.com/awsom82/happyconv)](http://gocover.io/github.com/awsom82/happyconv) [![license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://raw.githubusercontent.com/awsom82/happyconv/master/LICENSE)
+This work is done just in a test case
 
 ## Installing
-
 Just run `git clone github.com/awsom82/happyconv && cd happyconv` and run by `go build && ./happyconv`.
 This will run conversion http service at port 8080.
 
 ## Using
-After you run app, you shoud able send any JSON or XML file to `http://localhost:8080/`.
+After your run this app, you should able to send any JSON or XML file to `http://localhost:8080/`.
 
-Notice, there no specifict path for JSON or XML. The application will detect input type of file by mime-type header, ot, if it lack that info. it will try to detect that by file signature [MIME Sniffing](https://mimesniff.spec.whatwg.org)
+Notice, there no specific path for JSON or XML. The application will detect an input type of file by a mime-type header, or if it lacks that info. it will try to detect that by file signature [MIME Sniffing](https://mimesniff.spec.whatwg.org)
 
 ### Examples
 ```
