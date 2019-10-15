@@ -1,4 +1,4 @@
-# XML & JSON 2-Way Converter [![GitHub Actions](https://github.com/awsom82/happyconv/workflows/Go/badge.svg)](#) 
+# XML & JSON 2-Way Converter [![GitHub Actions](https://github.com/awsom82/happyconv/workflows/Go/badge.svg)](https://github.com/awsom82/happyconv/actions?workflow=Go) [![Go Report Card](https://goreportcard.com/badge/github.com/awsom82/happyconv)](https://goreportcard.com/report/github.com/awsom82/happyconv) [![Coverage](http://gocover.io/_badge/github.com/awsom82/happyconv)](http://gocover.io/github.com/awsom82/happyconv) [![license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://raw.githubusercontent.com/awsom82/happyconv/master/LICENSE)
 This work is done just in a test case
 
 ## Installing
