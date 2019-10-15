@@ -1,8 +1,8 @@
-# XML & JSON 2-Way Converter [![GitHub Actions](https://github.com/awsom82/happyconv/workflows/Go/badge.svg)](https://github.com/awsom82/happyconv) [![Go Report Card](https://goreportcard.com/badge/github.com/awsom82/happyconv)](https://goreportcard.com/report/github.com/awsom82/happyconv) [![Coverage](http://gocover.io/_badge/github.com/awsom82/happyconv)](http://gocover.io/github.com/awsom82/happyconv) [![license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://raw.githubusercontent.com/awsom82/happyconv/master/LICENSE)
+# XML & JSON 2-Way Converter [![GitHub Actions](https://github.com/awsom82/happyconv/workflows/Go/badge.svg)](#) 
 This work is done just in a test case
 
 ## Installing
-Just run `git clone github.com/awsom82/happyconv && cd happyconv` and run by `go build && ./happyconv`.
+Just execute in terminal `git clone github.com/awsom82/happyconv && cd happyconv` and run command `go build && ./happyconv`.
 This will run conversion http service at port 8080.
 
 ## Using
