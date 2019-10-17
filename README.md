@@ -1,5 +1,6 @@
 # XML & JSON 2-Way Converter [![GitHub Actions](https://github.com/awsom82/happyconv/workflows/Go/badge.svg)](https://github.com/awsom82/happyconv/actions?workflow=Go) [![Go Report Card](https://goreportcard.com/badge/github.com/awsom82/happyconv)](https://goreportcard.com/report/github.com/awsom82/happyconv) [![Coverage](http://gocover.io/_badge/github.com/awsom82/happyconv)](http://gocover.io/github.com/awsom82/happyconv) [![license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://raw.githubusercontent.com/awsom82/happyconv/master/LICENSE)
-This work is done just in a test case
+This work is done just in a test case. So, it have some pitfails and flaws.
+It lacks rate limiting headers. Like: X-RateLimit-Limit, X-RateLimit-Remaining, X-Rate-Limit-Reset.
 
 ## Installing
 Just execute in terminal `git clone github.com/awsom82/happyconv && cd happyconv` and run command `go build && ./happyconv`.

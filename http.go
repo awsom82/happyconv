@@ -7,11 +7,12 @@ import (
 
 // NewServer creates new server
 func NewServer() *http.Server {
+
 	srv := http.Server{
 		Addr:         ":8080",
 		ReadTimeout:  5 * time.Second,
 		WriteTimeout: 10 * time.Second,
-		Handler:      http.HandlerFunc(WebconvHadler),
+		Handler:      rateLimit(http.HandlerFunc(WebconvHandler)),
 	}
 
 	srv.SetKeepAlivesEnabled(false)
@@ -19,8 +20,8 @@ func NewServer() *http.Server {
 	return &srv
 }
 
-// WebconvHadler a http.handler function
-func WebconvHadler(w http.ResponseWriter, r *http.Request) {
+// WebconvHandler a http.handler function
+func WebconvHandler(w http.ResponseWriter, r *http.Request) {
 
 	conv := NewConv()
 	conv.CopyInput(r)
