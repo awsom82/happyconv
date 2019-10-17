@@ -4,10 +4,11 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
-	"github.com/clbanning/mxj"
 	"io"
 	"log"
 	"net/http"
+
+	"github.com/clbanning/mxj"
 )
 
 var (
@@ -33,7 +34,7 @@ func NewConv() *Converter {
 // CopyInput creates copy of received data and sets content-type
 func (c *Converter) CopyInput(r *http.Request) {
 
-	//this is not necessary, but its better keep payload
+	// This is not necessary, but its better keep payload
 	// in struct, for feature purposes (saving to db, etc.)
 	io.Copy(&c.Payload, r.Body)
 
