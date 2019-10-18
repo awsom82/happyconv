@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"time"
 
@@ -11,13 +12,16 @@ import (
 // NewServer creates new server and limiter
 func NewServer() *http.Server {
 
-	lmt := tollbooth.NewLimiter(500, &limiter.ExpirableOptions{DefaultExpirationTTL: 5 * time.Second})
+	conf := NewConfig("./config.yml")
+
+	lim := &limiter.ExpirableOptions{DefaultExpirationTTL: time.Duration(conf.RateLimitTTL) * time.Second}
+	lmt := tollbooth.NewLimiter(conf.RateLimit, lim)
 	lmt.SetIPLookups([]string{"X-Forwarded-For", "RemoteAddr", "X-Real-IP"})
 
 	h := http.HandlerFunc(WebconvHandler)
 
 	srv := http.Server{
-		Addr:         ":8080",
+		Addr:         fmt.Sprintf("%s:%d", conf.Hostname, conf.Port),
 		ReadTimeout:  5 * time.Second,
 		WriteTimeout: 10 * time.Second,
 		Handler:      tollbooth.LimitFuncHandler(lmt, h), // handle with third-party limiter
