@@ -11,8 +11,7 @@ After your run this app, you should able to send any JSON or XML file to `http:/
 Notice, there no specific path for JSON or XML. The application will detect an input type of file by a mime-type header, or if it lacks that info. it will try to detect that by file signature [MIME Sniffing](https://mimesniff.spec.whatwg.org)
 
 ### Configuration
-You can just type `./webconv --help` and to get help message.
-Available options is self explainable and contains default values.
+You can just type `./webconv --help` to get help message.
 ```
 Usage of ./webconv:
 
