@@ -25,7 +25,7 @@ func NewServer(conf *Config) *http.Server {
 		Handler:      tollbooth.LimitFuncHandler(lmt, h), // handle with third-party limiter
 	}
 
-	srv.SetKeepAlivesEnabled(false)
+	srv.SetKeepAlivesEnabled(conf.KeepAlive)
 
 	return &srv
 }
