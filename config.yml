@@ -1,5 +1,7 @@
+# Hostname and port configuration
 Hostname: "localhost"
 Port: 8080
 
+# RateLimer section
 RateLimit: 2e5 # limit to 200 000 requests
 RateLimitTTL: 5 # In seconds

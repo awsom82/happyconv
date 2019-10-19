@@ -1,8 +1,19 @@
 package main
 
 import (
+	"errors"
 	"fmt"
+	"log"
+
 	"github.com/spf13/viper"
+)
+
+var (
+	// ErrConfigNotFound
+	ErrConfigNotFound = errors.New("webconv: config file not found")
+
+	// ErrConfigDecode
+	ErrConfigDecode = errors.New("webconv: unable to decode config file")
 )
 
 type Config struct {
@@ -22,12 +33,12 @@ func NewConfig(filename string) *Config {
 
 	err := viper.ReadInConfig() // Find and read the config file
 	if err != nil {
-		panic(fmt.Errorf("Fatal error config file: %s \n", err))
+		log.Panic(fmt.Errorf("%v: %w", ErrConfigNotFound, err))
 	}
 
 	err = viper.Unmarshal(&conf)
 	if err != nil {
-		panic(fmt.Errorf("unable to decode into struct, %v", err))
+		log.Panic(fmt.Errorf("%v: %w", ErrConfigDecode, err))
 	}
 
 	return &conf

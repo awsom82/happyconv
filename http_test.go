@@ -53,6 +53,25 @@ func TestServeHTTP(t *testing.T) {
 		t.Error("Received payload data wrong")
 	}
 
+	res, err = http.Get(ts.URL)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	contenttype = res.Header.Get("Content-type")
+	result, err = ioutil.ReadAll(res.Body)
+
+	if err != nil {
+		t.Fatal(err)
+	} else {
+		defer res.Body.Close()
+	}
+
+	if res.StatusCode != 405 {
+		t.Error("Wrong response code for GET request")
+
+	}
+
 }
 
 func BenchmarkParallelTestServeHTTP(b *testing.B) {
