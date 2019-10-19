@@ -1,4 +1,4 @@
-package main
+package webconv
 
 import (
 	"bytes"
@@ -11,7 +11,9 @@ import (
 
 func TestNewServer(t *testing.T) {
 
-	srv := NewServer()
+	conf := NewConfig()
+
+	srv := NewServer(conf)
 	srvDummy := &http.Server{}
 
 	if reflect.TypeOf(srv) != reflect.TypeOf(srvDummy) {

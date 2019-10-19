@@ -1,4 +1,4 @@
-package main
+package webconv
 
 import (
 	"fmt"
@@ -10,11 +10,9 @@ import (
 )
 
 // NewServer creates new server and limiter
-func NewServer() *http.Server {
+func NewServer(conf *Config) *http.Server {
 
-	conf := NewConfig("./config.yml")
-
-	lim := &limiter.ExpirableOptions{DefaultExpirationTTL: time.Duration(conf.RateLimitTTL) * time.Second}
+	lim := &limiter.ExpirableOptions{DefaultExpirationTTL: conf.RateLimitTTL * time.Second}
 	lmt := tollbooth.NewLimiter(conf.RateLimit, lim)
 	lmt.SetIPLookups([]string{"X-Forwarded-For", "RemoteAddr", "X-Real-IP"})
 
@@ -44,6 +42,7 @@ func WebconvHandler(w http.ResponseWriter, r *http.Request) {
 
 	default:
 		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
+
 	}
 
 }

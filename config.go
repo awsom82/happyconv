@@ -1,45 +1,17 @@
-package main
+package webconv
 
 import (
-	"errors"
-	"fmt"
-	"log"
-
-	"github.com/spf13/viper"
-)
-
-var (
-	// ErrConfigNotFound
-	ErrConfigNotFound = errors.New("webconv: config file not found")
-
-	// ErrConfigDecode
-	ErrConfigDecode = errors.New("webconv: unable to decode config file")
+	"time"
 )
 
 type Config struct {
 	Hostname     string
-	Port         uint16
+	Port         uint // pflag doesnt support uint16 out of the box
 	RateLimit    float64
-	RateLimitTTL int
+	RateLimitTTL time.Duration
 }
 
-func NewConfig(filename string) *Config {
-
-	var conf Config
-
-	viper.SetConfigType("yaml")
-	viper.AddConfigPath(".")
-	viper.SetConfigName("config")
-
-	err := viper.ReadInConfig() // Find and read the config file
-	if err != nil {
-		log.Panic(fmt.Errorf("%v: %w", ErrConfigNotFound, err))
-	}
-
-	err = viper.Unmarshal(&conf)
-	if err != nil {
-		log.Panic(fmt.Errorf("%v: %w", ErrConfigDecode, err))
-	}
-
-	return &conf
+func NewConfig() *Config {
+	ttl, _ := time.ParseDuration("5s")
+	return &Config{"localhost", 8080, 2e5, ttl}
 }

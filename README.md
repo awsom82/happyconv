@@ -2,7 +2,7 @@
 This work is done just in a test case. So, it have some pitfails and flaws.
 
 ## Installing
-Just execute in terminal `git clone github.com/awsom82/happyconv && cd happyconv` and run command `go build && ./happyconv`.
+Just execute in terminal `git clone github.com/awsom82/happyconv && cd happyconv` and run command `go build ./cmd/webconv && ./webconv`.
 This will run conversion http service at port 8080.
 
 ## Using
