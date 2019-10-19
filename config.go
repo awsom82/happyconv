@@ -9,9 +9,10 @@ type Config struct {
 	Port         uint // pflag doesnt support uint16 out of the box
 	RateLimit    float64
 	RateLimitTTL time.Duration
+        KeepAlive    bool
 }
 
 func NewConfig() *Config {
 	ttl, _ := time.ParseDuration("5s")
-	return &Config{"localhost", 8080, 2e5, ttl}
+	return &Config{"localhost", 8080, 2e5, ttl, false}
 }
