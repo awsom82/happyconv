@@ -35,9 +35,15 @@ func NewServer() *http.Server {
 // WebconvHandler a http.handler function
 func WebconvHandler(w http.ResponseWriter, r *http.Request) {
 
-	conv := NewConv()
-	conv.CopyInput(r)
-	err := conv.SwapFormat()
-	conv.MakeReply(w, err)
+	switch r.Method {
+	case "POST":
+		conv := NewConv()
+		conv.CopyInput(r)
+		err := conv.SwapFormat()
+		conv.MakeReply(w, err)
+
+	default:
+		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
+	}
 
 }
