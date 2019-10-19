@@ -16,16 +16,6 @@ Available options is self explainable and contains default values.
 ```
 Usage of ./webconv:
 
-You should able to send any JSON or XML file localhost:8080.
-Notice, there no specific path for JSON or XML.
-
-The application will detect an input type of file by a mime-type header,
-or if it lacks that info. it will try to detect that by file signature MIME Sniffing
-
-Examples:
-> http :8080 Content-type:application/xml < example.xml
-> http :8080 Content-type:application/json < example.json
-
   -hostname string
   	bind server hostname (default "localhost")
   -port uint
