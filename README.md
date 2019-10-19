@@ -8,7 +8,7 @@ This will run conversion http service at port 8080.
 ## Using
 After your run this app, you should able to send any JSON or XML file to `http://localhost:8080/`.
 
-Notice, there no specific path for JSON or XML. The application will detect an input type of file by a mime-type header, or if it lacks that info. it will try to detect that by file signature [MIME Sniffing](https://mimesniff.spec.whatwg.org)
+Notice, there no specific path for JSON or XML. The application will detect an input type of file by a mime-type header, or if it lacks that info. It will try to detect that by file signature [MIME Sniffing](https://mimesniff.spec.whatwg.org)
 
 ### Configuration
 You can just type `./webconv --help` to get help message.
@@ -16,9 +16,9 @@ You can just type `./webconv --help` to get help message.
 Usage of ./webconv:
 
   -hostname string
-  	bind server hostname (default "localhost")
+  	Bind server address (default "localhost")
   -port uint
-  	port number (default 8080)
+  	Port number (default 8080)
   -rate float
   	Rate limiter (default 200000)
   -ttl duration

@@ -14,13 +14,11 @@ var webconvUsage = func() {
 Notice, there no specific path for JSON or XML.
 
 The application will detect an input type of file by a mime-type header,
-or if it lacks that info. it will try to detect that by file signature MIME Sniffing
+or if it lacks that info. It will try to detect that by file signature.
 
 Examples:
 > http :8080 Content-type:application/xml < example.xml
 > http :8080 Content-type:application/json < example.json`
-
-	//var CommandLine = NewFlagSet(os.Args[0], flag.ExitOnError)
 
 	fmt.Fprintf(flag.CommandLine.Output(), "Usage of %s:\n\n"+useText+"\n\n", os.Args[0])
 	flag.PrintDefaults()
@@ -32,8 +30,8 @@ func main() {
 
 	conf := webconv.NewConfig()
 
-	flag.StringVar(&conf.Hostname, "hostname", "localhost", "bind server hostname")
-	flag.UintVar(&conf.Port, "port", 8080, "port number")
+	flag.StringVar(&conf.Hostname, "hostname", "localhost", "Bind server address")
+	flag.UintVar(&conf.Port, "port", 8080, "Port number")
 	flag.Float64Var(&conf.RateLimit, "rate", 2e5, "Rate limiter")
 	flag.DurationVar(&conf.RateLimitTTL, "ttl", conf.RateLimitTTL, "Rate limiter TTL")
 	flag.Parse()
