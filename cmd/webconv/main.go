@@ -6,7 +6,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/awsom82/happyconv"
+	_ "github.com/awsom82/happyconv"
 )
 
 var webconvUsage = func() {
@@ -28,16 +28,16 @@ func main() {
 
 	flag.Usage = webconvUsage
 
-	conf := webconv.NewConfig()
+	conf := NewConfig()
 
 	flag.StringVar(&conf.Hostname, "hostname", "localhost", "Bind server address")
 	flag.UintVar(&conf.Port, "port", 8080, "Port number")
 	flag.Float64Var(&conf.RateLimit, "rate", 2e5, "Rate limiter")
 	flag.DurationVar(&conf.RateLimitTTL, "ttl", conf.RateLimitTTL, "Rate limiter TTL")
-        flag.BoolVar(&conf.KeepAlive, "keepalive", false, "Keep Alive")
+        flag.BoolVar(&conf.KeepAlive, "keep-alive", false, "Keep Alive")
 	flag.Parse()
 
-	srv := webconv.NewServer(conf)
+	srv := NewServer(conf)
 	log.Fatal(srv.ListenAndServe())
 
 }
