@@ -34,6 +34,7 @@ func main() {
 	flag.UintVar(&conf.Port, "port", 8080, "Port number")
 	flag.Float64Var(&conf.RateLimit, "rate", 2e5, "Rate limiter")
 	flag.DurationVar(&conf.RateLimitTTL, "ttl", conf.RateLimitTTL, "Rate limiter TTL")
+        flag.BoolVar(&conf.KeepAlive, false, conf.KeepAlive, "Keep Alive")
 	flag.Parse()
 
 	srv := webconv.NewServer(conf)
