@@ -17,12 +17,18 @@ Usage of ./webconv:
 
   -hostname string
   	Bind server address (default "localhost")
-  -port uint
+  -keep-alive
+  	HTTP Keep-Alive
+  -port int
   	Port number (default 8080)
   -rate float
   	Rate limiter (default 200000)
+  -read-timeout duration
+  	HTTP Read timeout (default 5s)
   -ttl duration
   	Rate limiter TTL (default 5s)
+  -write-timeout duration
+  	HTTP Write timeout (default 10s)
 ```
 
 ### Examples

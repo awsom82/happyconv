@@ -6,7 +6,7 @@ import (
 
 type Config struct {
 	Hostname     string
-	Port         uint // pflag doesnt support uint16 out of the box
+	Port         int // pflag doesnt support uint16 out of the box
 	RateLimit    float64
 	RateLimitTTL time.Duration
 	KeepAlive    bool

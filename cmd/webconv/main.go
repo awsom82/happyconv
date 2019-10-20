@@ -39,7 +39,7 @@ func main() {
 	conf := webconv.NewConfig()
 
 	flag.StringVar(&conf.Hostname, "hostname", conf.Hostname, "Bind server address")
-	flag.UintVar(&conf.Port, "port", conf.Port, "Port number")
+	flag.IntVar(&conf.Port, "port", conf.Port, "Port number")
 	flag.Float64Var(&conf.RateLimit, "rate", conf.RateLimit, "Rate limiter")
 	flag.DurationVar(&conf.RateLimitTTL, "ttl", conf.RateLimitTTL, "Rate limiter TTL")
 	flag.BoolVar(&conf.KeepAlive, "keep-alive", conf.KeepAlive, "HTTP Keep-Alive")
@@ -47,6 +47,8 @@ func main() {
 	flag.DurationVar(&conf.WriteTimeout, "write-timeout", conf.WriteTimeout, "HTTP Write timeout")
 
 	flag.Parse()
+
+	log.Println("Webconv service started...")
 
 	srv := webconv.NewServer(conf)
 	log.Fatal(srv.ListenAndServe())
