@@ -20,8 +20,8 @@ func NewServer(conf *Config) *http.Server {
 
 	srv := http.Server{
 		Addr:         fmt.Sprintf("%s:%d", conf.Hostname, conf.Port),
-		ReadTimeout:  5 * time.Second,
-		WriteTimeout: 10 * time.Second,
+		ReadTimeout:  conf.ReadTimeout * time.Second,
+		WriteTimeout: conf.WriteTimeout * time.Second,
 		Handler:      tollbooth.LimitFuncHandler(lmt, h), // handle with third-party limiter
 	}
 
