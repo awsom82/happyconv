@@ -28,4 +28,4 @@ jobs:
       run: go test -v .
 
     - name: Build
-      run: CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o -ldflags "-X main.gitHash=$(git rev-list -1 HEAD) -X main.gitTime=$(date "+%FT%T%Z")" ./cmd/webconv
+      run: CGO_ENABLED=0 go build -a -installsuffix -o -ldflags "-X main.gitHash=$(git rev-list -1 HEAD) -X main.gitTime=$(date "+%FT%T%Z")" ./cmd/webconv
