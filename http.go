@@ -3,7 +3,6 @@ package webconv
 import (
 	"fmt"
 	"net/http"
-	"time"
 
 	"github.com/didip/tollbooth"
 	"github.com/didip/tollbooth/limiter"
@@ -12,7 +11,7 @@ import (
 // NewServer creates new server and limiter
 func NewServer(conf *Config) *http.Server {
 
-	lim := &limiter.ExpirableOptions{DefaultExpirationTTL: conf.RateLimitTTL * time.Second}
+	lim := &limiter.ExpirableOptions{DefaultExpirationTTL: conf.RateLimitTTL}
 	lmt := tollbooth.NewLimiter(conf.RateLimit, lim)
 	lmt.SetIPLookups([]string{"X-Forwarded-For", "RemoteAddr", "X-Real-IP"})
 
@@ -20,9 +19,9 @@ func NewServer(conf *Config) *http.Server {
 
 	srv := http.Server{
 		Addr:         fmt.Sprintf("%s:%d", conf.Hostname, conf.Port),
-		ReadTimeout:  conf.ReadTimeout * time.Second,
-		WriteTimeout: conf.WriteTimeout * time.Second,
-		Handler:      tollbooth.LimitFuncHandler(lmt, h), // handle with third-party limiter
+		ReadTimeout:  conf.ReadTimeout,
+		WriteTimeout: conf.WriteTimeout,
+		Handler:      WebconvLogMiddleware(tollbooth.LimitFuncHandler(lmt, h)), // handle with third-party limiter
 	}
 
 	srv.SetKeepAlivesEnabled(conf.KeepAlive)
