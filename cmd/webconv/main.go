@@ -6,7 +6,6 @@ import (
 	"log"
 	"os"
 	"strings"
-	"time"
 
 	"github.com/awsom82/happyconv"
 )
@@ -27,8 +26,7 @@ Examples:
 > http :8080 Content-type:application/xml < example.xml
 > http :8080 Content-type:application/json < example.json`
 
-	t, _ := time.Parse(time.UnixDate, gitTime)
-	appVersion := fmt.Sprintf("Version:\n  Build %s at %s\n\n", strings.ToUpper(gitHash[:7]), t.Format(time.RFC822))
+	appVersion := fmt.Sprintf("Version:\n  Build %s at %s\n\n", strings.ToUpper(gitHash[:7]), gitTime)
 
 	fmt.Fprintf(flag.CommandLine.Output(), "Usage of %s:\n\n"+useText+"\n\n"+appVersion, os.Args[0])
 	flag.PrintDefaults()
