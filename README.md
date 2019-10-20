@@ -19,7 +19,7 @@ Usage of ./webconv:
   	Bind server address (default "localhost")
   -keep-alive
   	HTTP Keep-Alive
-  -port uint
+  -port int
   	Port number (default 8080)
   -rate float
   	Rate limiter (default 200000)
