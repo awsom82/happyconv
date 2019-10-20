@@ -2,23 +2,27 @@
 This work is done just in a test case. So, it have some pitfails and flaws.
 
 ## Installing
-Just execute in terminal `git clone github.com/awsom82/happyconv && cd happyconv` and run command `go build && ./happyconv`.
+Just execute in terminal `git clone github.com/awsom82/happyconv && cd happyconv` and run command `go build ./cmd/webconv && ./webconv`.
 This will run conversion http service at port 8080.
 
 ## Using
 After your run this app, you should able to send any JSON or XML file to `http://localhost:8080/`.
 
-Notice, there no specific path for JSON or XML. The application will detect an input type of file by a mime-type header, or if it lacks that info. it will try to detect that by file signature [MIME Sniffing](https://mimesniff.spec.whatwg.org)
+Notice, there no specific path for JSON or XML. The application will detect an input type of file by a mime-type header, or if it lacks that info. It will try to detect that by file signature [MIME Sniffing](https://mimesniff.spec.whatwg.org)
 
 ### Configuration
-You can configure the app by editing `config.yml` file.
-Available options is self explainable and contains default values.
+You can just type `./webconv --help` to get help message.
 ```
-Hostname: "localhost"
-Port: 8080
+Usage of ./webconv:
 
-RateLimit: 2e5 # limit to 200 000 requests
-RateLimitTTL: 5 # In seconds
+  -hostname string
+  	Bind server address (default "localhost")
+  -port uint
+  	Port number (default 8080)
+  -rate float
+  	Rate limiter (default 200000)
+  -ttl duration
+  	Rate limiter TTL (default 5s)
 ```
 
 ### Examples
