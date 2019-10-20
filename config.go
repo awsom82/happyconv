@@ -4,6 +4,14 @@ import (
 	"time"
 )
 
+var (
+	// ErrConfigNotFound
+	ErrConfigNotFound = errors.New("webconv: config file not found")
+
+	// ErrConfigDecode
+	ErrConfigDecode = errors.New("webconv: unable to decode config file")
+)
+
 type Config struct {
 	Hostname     string
 	Port         uint // pflag doesnt support uint16 out of the box
