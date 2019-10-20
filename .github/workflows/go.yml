@@ -28,4 +28,4 @@ jobs:
       run: go test -v .
 
     - name: Build
-      run: go build -ldflags "-X main.gitHash=$(git rev-list -1 HEAD) -X main.gitTime=$(date "+%FT%T")" ./cmd/webconv
+      run: go build -ldflags "-X main.gitHash=$(git rev-list -1 HEAD) -X main.gitTime=$(date "+%FT%T%Z")" ./cmd/webconv
