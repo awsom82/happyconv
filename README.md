@@ -2,7 +2,9 @@
 This work is done just in a test case. So, it have some pitfails and flaws.
 
 ## Installing
-Just execute in terminal `git clone github.com/awsom82/happyconv && cd happyconv` and run command `go build ./cmd/webconv && ./webconv`.
+Just execute in terminal `git clone github.com/awsom82/happyconv && cd happyconv`
+and run command `go build ./cmd/webconv && ./webconv`.
+
 This will run conversion http service at port 8080.
 
 ## Using
@@ -54,6 +56,7 @@ ok  	github.com/awsom82/happyconv	5.550s
 
 ### wrk
 Good start point for testing is run app with next keys:
+
 `./webconv -rate 3e5 -read-timeout 0.5s -write-timeout 1.3s -keep-alive 1`.
 
 Use `wrk -t12 -c400 -d30s -s./wrk-xml.lua  http://localhost:8080/` for simply load test
@@ -61,7 +64,7 @@ Use `wrk -t12 -c400 -d30s -s./wrk-xml.lua  http://localhost:8080/` for simply lo
 #### Beat next results
 JSON **104.00k rps** is best and XML 14.05k rps is best result 
 
-#### json-small
+##### json-small
 ```
 wrk -t1 -c9000 -d30s -s./wrk-json.lua http://localhost:8080/
 Running 30s test @ http://localhost:8080/
@@ -75,7 +78,7 @@ Requests/sec:  30774.50
 Transfer/sec:      9.74MB
 ```
 
-#### books.xml
+##### books.xml
 ```
 wrk -t1 -c9400 -d30s -s./wrk-xml.lua http://localhost:8080/
 Running 30s test @ http://localhost:8080/
@@ -88,5 +91,4 @@ Running 30s test @ http://localhost:8080/
   Non-2xx or 3xx responses: 379
 Requests/sec:  12524.26
 Transfer/sec:     42.39MB
-
 ```
