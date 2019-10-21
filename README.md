@@ -45,11 +45,11 @@ and run benchmarks
 `go test -bench . -benchmem -parallel 24 -cpu 4`
 
 ```
-BenchmarkParallelTestServeHTTP-4   	    7641	    339199 ns/op	   19842 B/op	     154 allocs/op
-BenchmarkJson2Xml-4                	   43954	     26005 ns/op	   41864 B/op	     211 allocs/op
-BenchmarkXml2Json-4                	   25051	     47962 ns/op	   19701 B/op	     406 allocs/op
+BenchmarkParallelTestServeHTTP-8   	   43688	     45218 ns/op	   20037 B/op	     154 allocs/op
+BenchmarkJson2Xml-8                	   41541	     33855 ns/op	   41864 B/op	     211 allocs/op
+BenchmarkXml2Json-8                	   31566	     38070 ns/op	   19704 B/op	     406 allocs/op
 PASS
-ok  	github.com/awsom82/happyconv	6.689s
+ok  	github.com/awsom82/happyconv	5.550s
 ```
 
 ### wrk
