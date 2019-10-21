@@ -39,7 +39,6 @@ $ http :8080 Content-type:application/json < example.json
 
 
 ## Testing & Benchmarking
-
 Test with `go test -v .`
 
 and run benchmarks 
@@ -52,3 +51,6 @@ BenchmarkXml2Json-4                	   25051	     47962 ns/op	   19701 B/op	    
 PASS
 ok  	github.com/awsom82/happyconv	6.689s
 ```
+
+### wrk
+Use `wrk -t12 -c400 -d30s -swrk-post.lua  http://localhost:8080/` for simply load test
