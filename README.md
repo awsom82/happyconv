@@ -42,7 +42,7 @@ $ http :8080 Content-type:application/json < example.json
 Test with `go test -v .`
 
 and run benchmarks 
-`go test -bench . -benchmem -parallel 24 -cpu 4`
+`go test -bench . -benchmem -parallel 24 -cpu 8`
 
 ```
 BenchmarkParallelTestServeHTTP-8   	   43688	     45218 ns/op	   20037 B/op	     154 allocs/op
@@ -53,15 +53,17 @@ ok  	github.com/awsom82/happyconv	5.550s
 ```
 
 ### wrk
-Good start point for testing is run app with next keys: `./webconv -rate 3e5 -read-timeout 0.5s -write-timeout 1.3s -keep-alive 1`.
-Use `wrk -t12 -c400 -d30s -swrk-post.lua  http://localhost:8080/` for simply load test
+Good start point for testing is run app with next keys:
+`./webconv -rate 3e5 -read-timeout 0.5s -write-timeout 1.3s -keep-alive 1`.
+
+Use `wrk -t12 -c400 -d30s -s./wrk-xml.lua  http://localhost:8080/` for simply load test
 
 #### Beat next results
-JSON  *104.00k rps* is best and XML 14.05k rps is best result 
+JSON **104.00k rps** is best and XML 14.05k rps is best result 
 
 #### json-small
 ```
-./wrk -t1 -c9000 -d30s -s./../happyconv/json.lua http://localhost:8080/
+wrk -t1 -c9000 -d30s -s./wrk-json.lua http://localhost:8080/
 Running 30s test @ http://localhost:8080/
   1 threads and 9000 connections
   Thread Stats   Avg      Stdev     Max   +/- Stdev
@@ -75,7 +77,7 @@ Transfer/sec:      9.74MB
 
 #### books.xml
 ```
-./wrk -t1 -c9400 -d30s -s./../happyconv/wrk-post.lua http://localhost:8080/
+wrk -t1 -c9400 -d30s -s./wrk-xml.lua http://localhost:8080/
 Running 30s test @ http://localhost:8080/
   1 threads and 9400 connections
   Thread Stats   Avg      Stdev     Max   +/- Stdev

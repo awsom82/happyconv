@@ -6,5 +6,5 @@ function readAll(file)
 end
 
 wrk.method = "POST"
-wrk.body = readAll("/var/local/happyconv/books.xml")
+wrk.body = readAll("books.xml")
 wrk.headers["Content-Type"] = "application/xml"
